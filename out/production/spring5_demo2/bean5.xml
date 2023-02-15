@@ -5,17 +5,14 @@
        xmlns:util="http://www.springframework.org/schema/util"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
                            http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
-    <!--1 提取list集合类型属性注入-->
-    <util:list id="bookList">
-        <value>易筋经</value>
-        <value>九阳神功</value>
-        <value>九阴真经</value>
-    </util:list>
 
-    <!--1 提取list集合类型属性注入使用-->
-    <bean id="book" class="com.atguigu.spring5.collectiontype.Book" scope="prototype">
-        <property name="list" ref="bookList"></property>
+    <!--实现自动装备
+        bean标签属性autowire，配置自动装配
+        autowire属性常用两个值：byName根据属性名称注入 byType根据属性类型注入
+       -->
+    <bean id="emp" class="com.atguigu.spring5.autowire.Emp" autowire="byName">
+<!--        <property name="dept" ref="dept"></property>-->
     </bean>
-
+    <bean id="dept" class="com.atguigu.spring5.autowire.Dept"></bean>
 
 </beans>

@@ -4,40 +4,46 @@
        xmlns:p="http://www.springframework.org/schema/p"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <!--配置User对象创建-->
-    <bean id="user" class="com.atguigu.spring5.User"></bean>
-
-    <!--set方法注入属性-->
-    <bean id="book" class="com.atguigu.spring5.Book">
-        <!--使用property完成属性注入
-            name:类里面属性名称
-            value:向属性注入的值
-        -->
-        <property name="bname" value="易筋经"></property>
-        <property name="bauthor" value="达摩祖师"></property>
-
-        <!--注入空值-->
-<!--        <property name="address">-->
-<!--            <null></null>-->
-<!--        </property>-->
-
-        <!--注入特殊符号
-            1.把<>进行转义&lt &gt
-            2.把带特殊符号内容写到CDATA
-        -->
-        <property name="address">
-            <value><![CDATA[<<南京>>]]></value>
+    <bean id="stu" class="com.atguigu.spring5.collectiontype.Stu">
+        <!--数组类型属性注入-->
+        <property name="courses">
+            <array>
+                <value>java课程</value>
+                <value>数据库课程</value>
+            </array>
+        </property>
+        <!--list类型属性注入-->
+        <property name="list">
+            <list>
+                <value>张三</value>
+                <value>三三</value>
+            </list>
+        </property>
+        <!--map类型属性注入-->
+        <property name="maps">
+            <map>
+                <entry key="JAVA" value="java"></entry>
+                <entry key="PHP" value="php"></entry>
+            </map>
+        </property>
+        <!--set类型属性注入-->
+        <property name="sets">
+            <set>
+                <value>MySQL</value>
+                <value>Redis</value>
+            </set>
+        </property>
+        <property name="courseList">
+            <list>
+                <ref bean="course1"></ref>
+                <ref bean="course2"></ref>
+            </list>
         </property>
     </bean>
-
-    <!--有参构造注入属性-->
-    <bean id="orders" class="com.atguigu.spring5.Orders">
-        <constructor-arg name="oname" value="电脑"></constructor-arg>
-        <constructor-arg name="address" value="China"></constructor-arg>
-        <!-- index：第几个参数-->
-        <!--<constructor-arg index="0" value="abc"></constructor-arg>-->
+    <bean id="course1" class="com.atguigu.spring5.collectiontype.Course">
+        <property name="cname" value="Spring5框架"></property>
     </bean>
-
-    <!--p名称空间注入-->
-<!--    <bean id="book" class="com.atguigu.spring5.Book" p:bname="九阳神功" p:bauthor="无名氏"></bean>-->
+    <bean id="course2" class="com.atguigu.spring5.collectiontype.Course">
+        <property name="cname" value="MyBatis框架"></property>
+    </bean>
 </beans>
